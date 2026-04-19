@@ -1,0 +1,63 @@
+---
+title: "Como Criar Templates de E-mail no Ordus System"
+description: "Crie templates de e-mail reutilizáveis no Ordus System para padronizar sua comunicação e acelerar o envio de campanhas e automações."
+keywords: ["template email", "criar template", "modelo email", "email design", "ordus system template email"]
+category: "E-mail"
+categorySlug: "email"
+ghlReference: ""
+lastUpdated: "2026-04-18"
+priority: 1
+---
+
+Templates de e-mail são modelos prontos que sua equipe reutiliza para campanhas, automações e comunicações do dia a dia. Em vez de criar cada e-mail do zero, você seleciona o template ideal, personaliza os dados do contato e envia em segundos.
+
+No Ordus System, os templates são criados com um editor visual intuitivo e ficam disponíveis para toda a equipe, garantindo consistência na identidade visual e na mensagem da empresa.
+
+## Passo a Passo
+
+1. **Acesse os templates de e-mail**: No menu lateral, clique em **E-mail** e selecione **Templates**. Clique em **+ Criar Template**.
+
+2. **Escolha o ponto de partida**:
+   - **Template em branco**: comece do zero com máxima flexibilidade
+   - **Template pré-pronto**: selecione um dos modelos da biblioteca (newsletter, boas-vindas, promoção, lembrete de agendamento, etc.)
+   - **Importar HTML**: cole o código HTML de um template existente
+
+3. **Configure as informações básicas**:
+   - **Nome do template**: identificação interna (ex.: "Boas-vindas — Versão A")
+   - **Assunto padrão**: linha de assunto sugerida (pode ser alterada ao usar o template)
+
+4. **Edite o conteúdo com o editor visual**: Use os blocos arrastáveis para montar o e-mail:
+   - **Texto**: adicione parágrafos, títulos e listas
+   - **Imagem**: faça upload ou insira URL de imagens
+   - **Botão**: crie call-to-actions com link personalizado
+   - **Divisor**: organize visualmente o layout
+   - **Código HTML**: para elementos avançados
+
+5. **Personalize com variáveis dinâmicas**: Clique em **Variáveis** para inserir dados dinâmicos como `{{contact.first_name}}`, `{{contact.email}}`, `{{appointment.date}}`. Esses campos são preenchidos automaticamente para cada destinatário.
+
+6. **Estilize a identidade visual**: Configure nas **Configurações Globais** do template:
+   - Cor de fundo e cor primária
+   - Fonte e tamanho do texto
+   - Logotipo no cabeçalho
+
+7. **Salve e visualize**: Clique em **Salvar Template**. Use **Enviar Teste** para receber uma prévia no seu e-mail antes de disponibilizar para a equipe.
+
+## Perguntas Frequentes
+
+**Posso restringir quem pode editar um template?**
+Sim. Em **Configurações do Template**, defina permissões de edição. Você pode bloquear determinados blocos (como o rodapé com dados legais) para evitar alterações acidentais.
+
+**Os templates funcionam em dispositivos móveis?**
+Sim. O editor usa design responsivo por padrão. Clique em **Visualização Mobile** no editor para checar como o e-mail aparecerá em smartphones antes de salvar.
+
+**Posso duplicar um template para criar variações de teste A/B?**
+Sim. Na lista de templates, clique nos três pontos ao lado do template e selecione **Duplicar**. Você pode criar variações e testá-las em diferentes segmentos de contatos.
+
+**Como usar o template em uma automação?**
+Ao adicionar uma ação de **Enviar E-mail** em um fluxo de automação, clique em **Selecionar Template** e escolha o template desejado da lista. O conteúdo será carregado automaticamente.
+
+## Próximos Passos
+
+- [Como Enviar um E-mail em Massa no Ordus System](/email/enviar-email-broadcast)
+- [Como Criar sua Primeira Automação no Ordus System](/automacoes/criar-automacao)
+- [Como Configurar o E-mail no Ordus System](/primeiros-passos/configurar-email)

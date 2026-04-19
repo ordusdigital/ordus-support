@@ -1,0 +1,57 @@
+---
+title: "Como Configurar e Enviar SMS no Ordus System"
+description: "Configure o envio de SMS no Ordus System e alcance seus clientes instantaneamente com mensagens de texto automatizadas ou manuais."
+keywords: ["configurar sms", "enviar sms", "sms marketing", "mensagem de texto", "ordus system sms"]
+category: "Telefonia"
+categorySlug: "telefonia"
+ghlReference: ""
+lastUpdated: "2026-04-18"
+priority: 1
+---
+
+O SMS tem uma das maiores taxas de abertura de todos os canais de comunicação — mais de 95% das mensagens são lidas em até 3 minutos. Com o Ordus System, você envia SMS individuais ou em massa, cria automações de follow-up por SMS e gerencia todas as conversas em um único lugar.
+
+Para enviar SMS, é necessário ter um número de telefone configurado na plataforma e créditos de SMS disponíveis. Este guia explica como fazer a configuração completa.
+
+## Passo a Passo
+
+1. **Adquira um número de telefone**: No menu lateral, acesse **Configurações → Número de Telefone** e clique em **+ Comprar Número**. Selecione um número local ou toll-free e confirme a compra.
+
+2. **Configure o número para SMS**: Após adquirir o número, marque a opção **Habilitar SMS** nas configurações do número. Defina também se quer receber respostas dos clientes por esse número.
+
+3. **Envie um SMS individual**: 
+   - Acesse **Conversas** e abra a conversa de um contato
+   - No campo de mensagem, selecione o canal **SMS** no menu suspenso
+   - Digite a mensagem e clique em **Enviar**
+
+4. **Envie um SMS em massa**:
+   - Acesse **E-mail** → **Campanhas** → **+ Criar Campanha** → selecione **SMS** como tipo
+   - Defina os destinatários (por tag, lista ou filtro)
+   - Escreva a mensagem (limite de 160 caracteres por SMS. Mensagens maiores serão divididas)
+   - Agende ou envie imediatamente
+
+5. **Crie automações de SMS**: No módulo **Automações → Fluxos**, adicione uma ação de **Enviar SMS** em qualquer ponto do fluxo. Use variáveis dinâmicas como `{{contact.first_name}}` para personalizar as mensagens.
+
+6. **Configure respostas automáticas**: Em **Configurações → Número de Telefone → Respostas Automáticas**, configure o que acontece quando um cliente responde ao SMS (ex.: encaminhar para um atendente ou enviar uma resposta automática).
+
+7. **Monitore as conversas**: Todas as trocas de SMS aparecem em **Conversas**, organizadas por contato. Você pode responder, atribuir a um atendente ou adicionar notas internas.
+
+## Perguntas Frequentes
+
+**O SMS funciona para números internacionais?**
+Sim, com algumas restrições. O envio para números no exterior depende da disponibilidade e conformidade regulatória de cada país. Verifique as regiões suportadas em **Configurações → SMS → Regiões**.
+
+**Qual é o custo por SMS enviado?**
+O custo varia por país e plano contratado. Você pode verificar a tabela de preços em **Configurações → Cobrança → Preços de SMS**. Recomendamos adquirir créditos antecipados para melhor custo.
+
+**Como sei se o SMS foi entregue?**
+Cada mensagem enviada tem um status de entrega: **Entregue**, **Não Entregue** (número inválido ou fora de área) ou **Pendente**. Você vê esse status na conversa e nos relatórios de campanha.
+
+**Posso usar SMS com opt-in e opt-out automático?**
+Sim. O Ordus System processa automaticamente respostas como "STOP" ou "SAIR" para remover o contato da lista de SMS, conforme exigido pela legislação de comunicações.
+
+## Próximos Passos
+
+- [Como Conectar o WhatsApp Business ao Ordus System](/primeiros-passos/conectar-whatsapp)
+- [Como Criar sua Primeira Automação no Ordus System](/automacoes/criar-automacao)
+- [Como Enviar um E-mail em Massa no Ordus System](/email/enviar-email-broadcast)
