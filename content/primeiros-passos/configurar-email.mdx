@@ -1,0 +1,53 @@
+---
+title: "Como Configurar o E-mail no Ordus System"
+description: "Configure seu e-mail no Ordus System para enviar campanhas, automatizar follow-ups e centralizar a comunicação com seus clientes."
+keywords: ["configurar email", "ordus system email", "smtp", "campanha email", "email marketing ordus"]
+category: "Primeiros Passos"
+categorySlug: "primeiros-passos"
+ghlReference: ""
+lastUpdated: "2026-04-18"
+priority: 0
+---
+
+Configurar o e-mail no Ordus System é o primeiro passo para enviar campanhas, automações e comunicações profissionais diretamente pela plataforma. Você pode usar um provedor dedicado de e-mail marketing ou integrar seu próprio servidor SMTP.
+
+O Ordus System suporta integrações nativas com os principais serviços de e-mail do mercado, garantindo alta entregabilidade e controle completo sobre sua comunicação. Siga o guia abaixo para configurar em menos de 10 minutos.
+
+## Passo a Passo
+
+1. **Acesse as configurações de e-mail**: No menu lateral, clique em **Configurações** → **E-mail** → **Serviços de E-mail**.
+
+2. **Escolha o tipo de configuração**: Você tem três opções:
+   - **Mailgun** (recomendado para volume alto)
+   - **SMTP personalizado** (para seu servidor próprio ou G Suite/Office 365)
+   - **Sendgrid** (para campanhas em massa)
+
+3. **Insira as credenciais do provedor**: Preencha os campos com as informações do seu serviço de e-mail. Para SMTP, você precisará de: host, porta, usuário e senha. Essas informações estão disponíveis no painel do seu provedor de e-mail.
+
+4. **Configure o endereço de envio (From)**: Defina o nome e endereço que aparecerá como remetente nos e-mails enviados (ex.: "Atendimento Ordus System <atendimento@seudominio.com.br>").
+
+5. **Valide o domínio**: Para melhorar a entregabilidade, adicione os registros DNS (SPF, DKIM e DMARC) fornecidos pelo Ordus System nas configurações do seu domínio. Clique em **Verificar Domínio** após adicionar os registros.
+
+6. **Envie um e-mail de teste**: Clique em **Testar Configuração** e insira um endereço para receber o e-mail de teste. Verifique se chegou na caixa de entrada (não no spam).
+
+7. **Salve e ative**: Clique em **Salvar Configurações**. O e-mail estará disponível para uso em campanhas e automações.
+
+## Perguntas Frequentes
+
+**Qual provedor de e-mail é recomendado?**
+Para a maioria dos negócios, o **Mailgun** oferece a melhor relação custo-benefício e alta entregabilidade. O plano gratuito suporta até 5.000 e-mails/mês, ideal para começar.
+
+**Meus e-mails estão indo para o spam, o que faço?**
+Verifique se os registros SPF, DKIM e DMARC estão configurados corretamente no seu domínio. Acesse **Configurações → E-mail → Verificação de Domínio** para checar o status de cada registro.
+
+**Posso usar o Gmail ou o Outlook para enviar e-mails?**
+Sim, mas com limitações. O Gmail tem um limite de envio diário (500 e-mails) e não é recomendado para campanhas em massa. Use SMTP com as configurações do G Suite para uso profissional.
+
+**É possível ter múltiplos endereços de envio?**
+Sim. Você pode configurar vários endereços de envio acessando **Configurações → E-mail → Endereços de Envio** e adicionando cada um separadamente.
+
+## Próximos Passos
+
+- [Como Enviar um E-mail em Massa no Ordus System](/email/enviar-email-broadcast)
+- [Como Criar sua Primeira Automação no Ordus System](/automacoes/criar-automacao)
+- [Como Conectar o WhatsApp Business ao Ordus System](/primeiros-passos/conectar-whatsapp)

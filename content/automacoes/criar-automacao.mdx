@@ -1,0 +1,53 @@
+---
+title: "Como Criar sua Primeira Automação no Ordus System"
+description: "Aprenda a criar automações no Ordus System para enviar mensagens, mover oportunidades e nutrir leads automaticamente sem intervenção manual."
+keywords: ["criar automação", "fluxo de automação", "workflow ordus", "automatizar mensagens", "ordus system automação"]
+category: "Automações e Fluxos"
+categorySlug: "automacoes"
+ghlReference: ""
+lastUpdated: "2026-04-18"
+priority: 0
+---
+
+As automações do Ordus System permitem que você execute ações repetitivas — enviar mensagens, criar tarefas, mover oportunidades — de forma totalmente automática. Uma boa automação economiza horas de trabalho manual por semana e garante que nenhum lead seja esquecido.
+
+Neste guia, você criará uma automação básica de boas-vindas: quando um novo contato entrar no sistema, ele receberá automaticamente uma mensagem de WhatsApp ou e-mail. Este é o ponto de partida ideal para entender a lógica das automações.
+
+## Passo a Passo
+
+1. **Acesse o módulo de Automações**: No menu lateral, clique em **Automações** e selecione **Fluxos de Automação**. Clique em **+ Criar Fluxo**.
+
+2. **Escolha o gatilho (trigger)**: O gatilho é o evento que inicia a automação. Para a automação de boas-vindas, selecione **Contato Criado** na lista de gatilhos disponíveis.
+
+3. **Configure filtros do gatilho** (opcional): Adicione filtros para segmentar quando a automação dispara. Exemplo: "apenas contatos com tag 'lead-site'" ou "apenas contatos da cidade X".
+
+4. **Adicione a primeira ação**: Clique em **+ Adicionar Ação** e selecione o tipo:
+   - **Enviar E-mail**: para mensagens formais com conteúdo rico
+   - **Enviar WhatsApp**: para contato imediato e pessoal
+   - **Enviar SMS**: para mensagens curtas e diretas
+
+5. **Crie o conteúdo da mensagem**: Escreva a mensagem usando **variáveis dinâmicas** para personalizar (ex.: `{{contact.first_name}}` para inserir o nome do contato automaticamente). Clique em **Variáveis** para ver todas as opções disponíveis.
+
+6. **Adicione um delay** (opcional): Insira um bloco **Aguardar** para criar um intervalo entre ações (ex.: aguardar 2 dias antes de enviar o segundo e-mail).
+
+7. **Ative o fluxo**: Revise o fluxo completo e clique em **Publicar**. O botão **Ativar** ficará verde, confirmando que a automação está rodando.
+
+## Perguntas Frequentes
+
+**Posso editar uma automação depois de ativá-la?**
+Sim. Clique na automação e selecione **Editar**. As mudanças se aplicam apenas a novos contatos que entrarem no fluxo após a edição. Contatos já no fluxo continuam pela versão anterior.
+
+**Como faço para testar a automação antes de ativar?**
+Use o botão **Testar Fluxo** no editor. Insira um e-mail/número de teste e o sistema simulará o fluxo completo sem afetar contatos reais.
+
+**Quantas ações posso ter em um fluxo?**
+Não há limite de ações por fluxo. Você pode criar automações complexas com dezenas de etapas, ramificações condicionais (IF/THEN) e integrações com outras ferramentas.
+
+**A automação funciona 24/7?**
+Sim. Uma vez ativada, a automação roda de forma contínua, inclusive nos finais de semana e fora do horário comercial, a menos que você configure horários específicos de execução.
+
+## Próximos Passos
+
+- [Como Criar um Pipeline de Vendas no Ordus System](/pipelines/criar-pipeline)
+- [Como Conectar o WhatsApp Business ao Ordus System](/primeiros-passos/conectar-whatsapp)
+- [Como Configurar o E-mail no Ordus System](/primeiros-passos/configurar-email)
