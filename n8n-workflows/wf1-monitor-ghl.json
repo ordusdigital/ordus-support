@@ -1,0 +1,119 @@
+{
+  "name": "Ordus Support — 1. Monitor GHL + Tracking",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 11 * * *"
+            }
+          ]
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Daily 08h BRT",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://help.gohighlevel.com/sitemap.xml",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000002",
+      "name": "Fetch GHL Sitemap",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const xml = $input.first().json.data || '';\nconst matches = [...xml.matchAll(/<loc>([^<]+)<\\/loc>/g)];\nconst urls = matches\n  .map(m => m[1])\n  .filter(url => url.includes('/support/') || url.includes('/en-us/articles/'));\n\nreturn [{json: {urls: urls.slice(0, 10), count: urls.length, timestamp: new Date().toISOString()}}];"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000003",
+      "name": "Parse Sitemap",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.launchpro.digital/message/sendText/geseth1",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "0b79f2a0d094d99dce1be72cc7ea1617"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"number\": \"5519997052849\", \"text\": \"🔍 *Monitor GHL — \" + new Date().toLocaleDateString('pt-BR') + \"*\\n\\nSitemap verificado: \" + $json.count + \" artigos encontrados.\\n\\nPortal: https://suporte.ordussystem.com.br\"}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000004",
+      "name": "WhatsApp Notify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Daily 08h BRT": {
+      "main": [
+        [
+          {
+            "node": "Fetch GHL Sitemap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch GHL Sitemap": {
+      "main": [
+        [
+          {
+            "node": "Parse Sitemap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Sitemap": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Notify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "id": "OrdusSupWF001"
+}

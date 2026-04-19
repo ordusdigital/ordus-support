@@ -1,0 +1,129 @@
+{
+  "name": "Ordus Support — 2. Deploy QA Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ordus-deploy-qa",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000001",
+      "name": "Deploy QA Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "ordus-deploy-qa"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "OK",
+        "options": {}
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000002",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        460,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "id": "check-event",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "deploy_complete",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000003",
+      "name": "Is Deploy Complete?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        460,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.launchpro.digital/message/sendText/geseth1",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "0b79f2a0d094d99dce1be72cc7ea1617"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"number\": \"5519997052849\", \"text\": \"✅ *Deploy Ordus Support — Concluído!*\\n\\nPortal atualizado com sucesso.\\n🔗 https://suporte.ordussystem.com.br\\n\\nRepo: \" + $json.body.repo + \"\\nBranch: \" + $json.body.branch}",
+        "options": {}
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000004",
+      "name": "Notify Deploy Success",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        340
+      ]
+    }
+  ],
+  "connections": {
+    "Deploy QA Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Is Deploy Complete?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Deploy Complete?": {
+      "main": [
+        [
+          {
+            "node": "Notify Deploy Success",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "id": "OrdusSupWF002"
+}
