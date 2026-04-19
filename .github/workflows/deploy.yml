@@ -40,6 +40,15 @@ jobs:
           directory: out
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Submit URLs to Google Search Console
+        if: success() && env.GSC_KEY_AVAILABLE == 'true'
+        env:
+          GOOGLE_SEARCH_CONSOLE_KEY: ${{ secrets.GOOGLE_SEARCH_CONSOLE_KEY }}
+          NEXT_PUBLIC_SITE_URL: https://suporte.ordussystem.com.br
+          GSC_KEY_AVAILABLE: ${{ secrets.GOOGLE_SEARCH_CONSOLE_KEY != '' && 'true' || 'false' }}
+        run: npm run gsc-submit
+        continue-on-error: true
+
       - name: Notify QA webhook
         if: success()
         run: |

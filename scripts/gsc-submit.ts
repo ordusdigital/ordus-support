@@ -37,12 +37,18 @@ async function main() {
     return
   }
 
-  const tracking = JSON.parse(fs.readFileSync(trackingPath, 'utf-8'))
-  const published = Object.values(tracking).filter((e: never) => (e as { status: string }).status === '✅ Publicado')
+  const trackingFile = JSON.parse(fs.readFileSync(trackingPath, 'utf-8'))
+  // suporta { articles: { "cat/slug": { status, url } } } e TrackingMap flat
+  const articlesMap: Record<string, { status: string; url?: string }> =
+    trackingFile.articles ?? trackingFile
+
+  const published = Object.entries(articlesMap).filter(
+    ([, v]) => v.status === 'published' || v.status === '✅ Publicado'
+  )
 
   console.log(`📤 Submetendo ${published.length} URLs ao Google Search Console...`)
-  for (const entry of published as Array<{ urlFinal?: string; categorySlug: string; slug: string }>) {
-    const url = entry.urlFinal ?? `${SITE_URL}/${entry.categorySlug}/${entry.slug}`
+  for (const [key, entry] of published) {
+    const url = entry.url ?? `${SITE_URL}/${key}/`
     await submitUrl(url)
     await new Promise(r => setTimeout(r, 200))
   }
