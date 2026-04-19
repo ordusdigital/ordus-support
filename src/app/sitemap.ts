@@ -3,6 +3,8 @@ import { getAllArticles } from '@/lib/mdx'
 import { getCategoriesByPriority } from '@/lib/categories'
 import { SITE_URL } from '@/lib/utils'
 
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const articles = getAllArticles()
   const categories = getCategoriesByPriority()
