@@ -2,9 +2,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getArticlesByCategory } from '@/lib/mdx'
 import { getCategoryBySlug, getCategoriesByPriority } from '@/lib/categories'
-import { formatDate, isNew } from '@/lib/utils'
+import { formatDate } from '@/lib/utils'
 import Breadcrumb from '@/components/Breadcrumb'
 import BadgeNewUpdated from '@/components/BadgeNewUpdated'
+import { getCategoryIcon } from '@/components/icons/CategoryIcons'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -35,59 +36,100 @@ export default async function CategoryPage({ params }: Props) {
   )
 
   return (
-    <main className="min-h-screen bg-bg">
-      <header className="border-b border-border">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <a href="/" className="font-display font-bold text-xl text-text">
-            Ordus System <span className="text-primary">Suporte</span>
-          </a>
-        </div>
-      </header>
-
-      <div className="max-w-4xl mx-auto px-4 py-10">
-        <Breadcrumb
-          items={[
-            { label: 'Suporte', href: '/' },
-            { label: cat.name },
-          ]}
-        />
-
-        <div className="mb-8 mt-6">
-          <h1 className="font-display text-3xl font-bold text-text mb-2">{cat.name}</h1>
-          <p className="text-text-muted">{cat.description}</p>
-          <p className="text-text-muted text-sm mt-2">{articles.length} artigo{articles.length !== 1 ? 's' : ''}</p>
-        </div>
-
-        {articles.length === 0 ? (
-          <div className="text-center py-20 text-text-muted">
-            <p>Artigos em preparação. Em breve disponíveis.</p>
+    <main>
+      {/* Dark header strip */}
+      <section
+        className="bg-isotipo-grid border-b border-border pt-20 pb-12 px-6"
+        style={{ background: '#0A0A0A' }}
+      >
+        <div className="max-w-4xl mx-auto">
+          <Breadcrumb
+            items={[
+              { label: 'Suporte', href: '/' },
+              { label: cat.name },
+            ]}
+          />
+          <div className="flex items-center gap-4 mt-6">
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+              style={{ background: 'rgba(154,17,233,0.12)', border: '1px solid rgba(154,17,233,0.20)' }}
+            >
+              {getCategoryIcon(cat.slug)}
+            </div>
+            <div>
+              <h1 className="font-display text-2xl font-bold text-text">{cat.name}</h1>
+              <p className="text-text-muted text-sm mt-0.5">
+                {articles.length} artigo{articles.length !== 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
-        ) : (
-          <ul className="space-y-3">
-            {articles.map(article => (
-              <li key={article.slug}>
-                <Link
-                  href={`/${category}/${article.slug}`}
-                  className="flex items-start justify-between gap-4 p-4 rounded-lg bg-bg-card border border-border hover:border-primary hover:bg-bg-hover transition-all group"
-                >
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-text font-medium group-hover:text-primary transition-colors">
-                        {article.frontmatter.title}
-                      </span>
-                      <BadgeNewUpdated date={article.frontmatter.lastUpdated} />
+          {cat.description && (
+            <p className="text-text-muted mt-4 max-w-2xl">{cat.description}</p>
+          )}
+        </div>
+      </section>
+
+      {/* Light article list */}
+      <section className="py-12 px-6 min-h-[50vh]" style={{ background: '#F5F5F5' }}>
+        <div className="max-w-4xl mx-auto">
+          {articles.length === 0 ? (
+            <div className="text-center py-20" style={{ color: '#6A6A6A' }}>
+              <p>Artigos em preparação. Em breve disponíveis.</p>
+            </div>
+          ) : (
+            <ul className="space-y-3">
+              {articles.map(article => (
+                <li key={article.slug}>
+                  <Link
+                    href={`/${category}/${article.slug}`}
+                    className="group flex items-start justify-between gap-4 p-5 rounded-xl transition-all duration-200 hover:-translate-y-px"
+                    style={{
+                      background: '#FFFFFF',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      boxShadow: 'var(--shadow-card)',
+                    }}
+                  >
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <span
+                          className="font-medium transition-colors group-hover:text-brand"
+                          style={{ color: '#0A0A0A', fontSize: '0.9375rem' }}
+                        >
+                          {article.frontmatter.title}
+                        </span>
+                        <BadgeNewUpdated date={article.frontmatter.lastUpdated} />
+                      </div>
+                      <p className="text-sm line-clamp-2" style={{ color: '#6A6A6A' }}>
+                        {article.frontmatter.description}
+                      </p>
+                      <p className="text-xs mt-2" style={{ color: 'rgba(106,106,106,0.70)' }}>
+                        Atualizado em {formatDate(article.frontmatter.lastUpdated)}
+                      </p>
                     </div>
-                    <p className="text-text-muted text-sm line-clamp-2">{article.frontmatter.description}</p>
-                  </div>
-                  <div className="shrink-0 text-xs text-text-muted mt-1">
-                    {article.readingTime} min
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+                    <div
+                      className="shrink-0 text-xs font-medium px-2.5 py-1 rounded-pill mt-1"
+                      style={{ background: 'rgba(154,17,233,0.08)', color: 'var(--color-brand-mid)' }}
+                    >
+                      {article.readingTime} min
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+
+      {/* Dark footer */}
+      <footer className="bg-bg border-t border-border">
+        <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+          <span>© {new Date().getFullYear()} Ordus Digital — Todos os direitos reservados</span>
+          <div className="flex gap-6">
+            <a href="https://ordussystem.com.br" className="hover:text-text transition-colors">Plataforma</a>
+            <a href="https://ordusdigital.com.br" className="hover:text-text transition-colors">Ordus Digital</a>
+          </div>
+        </div>
+      </footer>
     </main>
   )
 }
