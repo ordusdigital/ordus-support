@@ -1,0 +1,91 @@
+name: Daily Article Batch
+
+on:
+  schedule:
+    - cron: '0 11 * * *'   # 08:00 BRT (UTC-3)
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'Artigos a gerar (padrão: 10)'
+        required: false
+        default: '10'
+
+jobs:
+  batch:
+    runs-on: ubuntu-latest
+    name: Gerar Artigos
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Run batch generate
+        id: batch
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BATCH_SIZE: ${{ github.event.inputs.batch_size || '10' }}
+        run: |
+          npm run batch-generate 2>&1 | tee batch-output.txt
+          echo "exit_code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Commit generated articles
+        id: commit
+        run: |
+          git config user.name  "ordus-bot"
+          git config user.email "contato@ordusdigital.com.br"
+          git add content/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Nenhum artigo novo gerado."
+          else
+            COUNT=$(git diff --cached --name-only | grep '\.mdx$' | wc -l | tr -d ' ')
+            git commit -m "content: batch +${COUNT} artigos — $(date -u '+%Y-%m-%d')"
+            git push origin main
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "count=${COUNT}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notify WhatsApp — sucesso
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          COUNT="${{ steps.commit.outputs.count }}"
+          SUMMARY=$(tail -20 batch-output.txt | tr '\n' ' ' | sed 's/"/\\"/g')
+          curl -s -X POST "https://api.launchpro.digital/message/sendText/geseth1" \
+            -H "Content-Type: application/json" \
+            -H "apikey: ${{ secrets.EVOLUTION_API_KEY }}" \
+            -d "{\"number\":\"5519997052849\",\"text\":\"✅ *Batch Ordus Support* — ${COUNT} artigos publicados em $(date -u '+%d/%m/%Y')\\n\\nhttps://suporte.ordussystem.com.br\"}" \
+          || true
+
+      - name: Notify WhatsApp — nada a fazer
+        if: steps.commit.outputs.changed == 'false' && steps.batch.outputs.exit_code == '0'
+        run: |
+          curl -s -X POST "https://api.launchpro.digital/message/sendText/geseth1" \
+            -H "Content-Type: application/json" \
+            -H "apikey: ${{ secrets.EVOLUTION_API_KEY }}" \
+            -d "{\"number\":\"5519997052849\",\"text\":\"🎉 *Ordus Support* — todos os artigos GHL já estão publicados! Portal em modo de monitoramento.\"}" \
+          || true
+
+      - name: Notify WhatsApp — erro
+        if: steps.batch.outputs.exit_code != '0'
+        run: |
+          OUTPUT=$(head -30 batch-output.txt | tr '\n' ' ' | sed 's/"/\\"/g')
+          curl -s -X POST "https://api.launchpro.digital/message/sendText/geseth1" \
+            -H "Content-Type: application/json" \
+            -H "apikey: ${{ secrets.EVOLUTION_API_KEY }}" \
+            -d "{\"number\":\"5519997052849\",\"text\":\"❌ *Batch Ordus Support* falhou em $(date -u '+%d/%m/%Y')\\n\`\`\`${OUTPUT}\`\`\`\"}" \
+          || true

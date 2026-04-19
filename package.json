@@ -12,7 +12,8 @@
     "sheets-sync": "npx ts-node --project tsconfig.scripts.json scripts/sheets-sync.ts",
     "gsc-submit": "npx ts-node --project tsconfig.scripts.json scripts/gsc-submit.ts",
     "screenshot": "npx ts-node --project tsconfig.scripts.json scripts/screenshot-pipeline.ts",
-    "worker": "npx ts-node --project tsconfig.scripts.json scripts/server.ts"
+    "worker": "npx ts-node --project tsconfig.scripts.json scripts/server.ts",
+    "batch-generate": "npx ts-node --project tsconfig.scripts.json scripts/batch-generate.ts"
   },
   "dependencies": {
     "next": "15.3.1",
