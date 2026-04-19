@@ -1,1 +1,102 @@
-{}
+{
+  "lastUpdated": "2026-04-18",
+  "articles": {
+    "primeiros-passos/bem-vindo-ao-ordus-system": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/primeiros-passos/bem-vindo-ao-ordus-system/"
+    },
+    "primeiros-passos/configurar-subconta": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/primeiros-passos/configurar-subconta/"
+    },
+    "primeiros-passos/importar-contatos": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/primeiros-passos/importar-contatos/"
+    },
+    "primeiros-passos/conectar-whatsapp": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/primeiros-passos/conectar-whatsapp/"
+    },
+    "primeiros-passos/configurar-email": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/primeiros-passos/configurar-email/"
+    },
+    "pipelines/criar-pipeline": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/pipelines/criar-pipeline/"
+    },
+    "pipelines/mover-oportunidade": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/pipelines/mover-oportunidade/"
+    },
+    "automacoes/criar-automacao": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/automacoes/criar-automacao/"
+    },
+    "automacoes/criar-formulario": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/automacoes/criar-formulario/"
+    },
+    "email/enviar-email-broadcast": {
+      "status": "published",
+      "priority": 0,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/email/enviar-email-broadcast/"
+    },
+    "funis-e-sites/criar-funil": {
+      "status": "published",
+      "priority": 1,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/funis-e-sites/criar-funil/"
+    },
+    "agendamentos/agendar-reuniao": {
+      "status": "published",
+      "priority": 1,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/agendamentos/agendar-reuniao/"
+    },
+    "relatorios/criar-relatorio": {
+      "status": "published",
+      "priority": 1,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/relatorios/criar-relatorio/"
+    },
+    "telefonia/configurar-sms": {
+      "status": "published",
+      "priority": 1,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/telefonia/configurar-sms/"
+    },
+    "email/criar-template-email": {
+      "status": "published",
+      "priority": 1,
+      "publishedAt": "2026-04-18",
+      "url": "https://suporte.ordussystem.com.br/email/criar-template-email/"
+    }
+  },
+  "summary": {
+    "total": 15,
+    "published": 15,
+    "pending": 0,
+    "p0_complete": 10,
+    "p1_complete": 5
+  }
+}
