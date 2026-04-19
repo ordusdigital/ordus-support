@@ -17,8 +17,11 @@ const withMDX = createMDX({
 })
 
 const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
+    unoptimized: true,
     domains: ['suporte.ordussystem.com.br'],
     formats: ['image/avif', 'image/webp'],
   },

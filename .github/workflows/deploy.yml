@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  deployments: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build
+      - name: Build (static export)
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://suporte.ordussystem.com.br
@@ -33,7 +37,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
           accountId: 50cf2413cc4834b290d475896d5a4465
           projectName: ordus-support
-          directory: .next
+          directory: out
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Notify QA webhook
