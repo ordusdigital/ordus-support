@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Fractul';
+  src: url('/fonts/Fractul-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fractul';
+  src: url('/fonts/Fractul-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fractul';
+  src: url('/fonts/Fractul-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-bg: #0A0A0A;
+  --color-bg-card: #111111;
+  --color-bg-hover: #1A1A1A;
+  --color-primary: #7F2DC1;
+  --color-primary-hover: #9235D4;
+  --color-text: #F0F0F2;
+  --color-text-muted: #9090A0;
+  --color-border: #2A2A2A;
+  --font-display: 'Fractul', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Progress bar */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-primary);
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* Prose overrides for MDX */
+.prose {
+  color: var(--color-text);
+  max-width: none;
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: var(--color-text);
+  font-family: var(--font-display);
+}
+.prose a {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose code {
+  color: #c084fc;
+  background: var(--color-bg-card);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+.prose pre {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+.prose pre code {
+  background: transparent;
+  padding: 0;
+}
+.prose blockquote {
+  border-left: 3px solid var(--color-primary);
+  color: var(--color-text-muted);
+}
+.prose hr {
+  border-color: var(--color-border);
+}
+.prose strong {
+  color: var(--color-text);
+}
+.prose ol > li::marker,
+.prose ul > li::marker {
+  color: var(--color-primary);
+}
+.prose img {
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}

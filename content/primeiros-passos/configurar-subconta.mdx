@@ -1,0 +1,104 @@
+---
+title: "Como Configurar sua Subconta no Ordus System"
+description: "Guia completo para configurar sua subconta no Ordus System: perfil de negócio, usuários, domínios e integrações essenciais."
+keywords: ["configurar subconta Ordus System", "subconta CRM", "setup conta CRM Brasil", "configuração inicial CRM", "Ordus System configuração"]
+category: "Primeiros Passos"
+categorySlug: "primeiros-passos"
+ghlReference: "https://help.gohighlevel.com/en/articles/sub-account-setup"
+lastUpdated: "2026-04-18"
+priority: 0
+tags: ["configuração", "subconta", "setup", "onboarding", "usuários"]
+screenshotSteps:
+  - step: 1
+    description: "Menu de configurações da subconta"
+    action: "navigate"
+    url: "/settings"
+    highlight: ".settings-menu, nav[data-settings]"
+    annotation: "1. Acesse Configurações"
+  - step: 2
+    description: "Seção de perfil de negócio"
+    action: "click"
+    selector: "[href='/settings/business-profile'], .nav-business-profile"
+    highlight: ".business-profile-form"
+    annotation: "2. Edite o perfil de negócio"
+  - step: 3
+    description: "Adicionando um novo usuário"
+    action: "navigate"
+    url: "/settings/team"
+    highlight: ".team-members-list, .add-user-button"
+    annotation: "3. Gerencie sua equipe"
+  - step: 4
+    description: "Configuração de fuso horário"
+    action: "navigate"
+    url: "/settings/business-profile"
+    highlight: "[name='timezone'], .timezone-select"
+    annotation: "4. Defina o fuso horário"
+faqs:
+  - q: "Posso ter múltiplas subcontas no Ordus System?"
+    a: "Sim. O Ordus System é uma plataforma multi-conta. Se você é uma agência ou tem múltiplas empresas, cada uma pode ter sua própria subconta com dados completamente separados. A gestão centralizada é feita pelo painel de Visão de Agência."
+  - q: "Como adicionar membros da equipe com permissões específicas?"
+    a: "Vá em Configurações → Equipe → Adicionar Usuário. Defina o e-mail, nome e nível de acesso. O Ordus System oferece perfis de permissão predefinidos (Admin, Vendedor, Visualizador) e também permite configurações personalizadas por módulo."
+  - q: "Como conectar meu domínio ao Ordus System?"
+    a: "Em Configurações → Domínios, adicione seu domínio e configure os registros DNS conforme as instruções da plataforma. O processo leva até 48 horas para propagação completa. Depois disso, seus funis e sites aparecerão no seu domínio próprio."
+  - q: "O que acontece se eu esquecer de configurar o fuso horário?"
+    a: "As automações e agendamentos do Ordus System usam o fuso horário da subconta. Se estiver incorreto, mensagens automáticas e lembretes de agendamento chegam no horário errado para seus clientes. Configure antes de criar qualquer automação."
+  - q: "Como transferir configurações entre subcontas?"
+    a: "O Ordus System permite exportar e importar snapshots de configuração entre subcontas. Isso inclui automações, funis, templates de e-mail e pipelines. Use Configurações → Snapshots para criar um backup completo da sua subconta."
+---
+
+A configuração correta da subconta no Ordus System é o passo mais importante do onboarding. Ela define como todas as comunicações chegam para seus clientes e como sua equipe vai trabalhar na plataforma.
+
+## O que é e para que serve
+
+A subconta no Ordus System é o seu espaço de trabalho completo: centraliza todos os contatos, pipelines, automações e comunicações da sua empresa em um único ambiente. Configurar corretamente o perfil de negócio, os usuários e os canais de comunicação desde o início evita retrabalho e garante que as automações funcionem do jeito certo.
+
+## Passo a passo
+
+1. **Acesse o menu de Configurações**
+   No menu lateral esquerdo, clique em "Configurações" (ícone de engrenagem). Você verá todas as seções de configuração disponíveis para sua subconta.
+   ![Passo 1: Menu de configurações do Ordus System](./screenshots/step-01.png)
+
+2. **Preencha o Perfil de Negócio**
+   Em Configurações → Perfil de Negócio, insira: nome da empresa, endereço completo, telefone principal, site e logo da empresa. Essas informações aparecem em e-mails, SMS e páginas criadas na plataforma.
+   ![Passo 2: Perfil de negócio no Ordus System](./screenshots/step-02.png)
+
+3. **Adicione os membros da equipe**
+   Em Configurações → Equipe, clique em "Adicionar Usuário". Defina o nome, e-mail e nível de permissão de cada membro. O usuário receberá um convite por e-mail para criar sua senha.
+   ![Passo 3: Gestão de equipe no Ordus System](./screenshots/step-03.png)
+
+4. **Configure o fuso horário**
+   Ainda no Perfil de Negócio, localize o campo "Fuso Horário" e selecione o correto para sua empresa. Para empresas brasileiras, use America/Sao_Paulo (BRT/BRST).
+   ![Passo 4: Configuração de fuso horário](./screenshots/step-04.png)
+
+## Dicas práticas
+
+**Para agências que gerenciam múltiplos clientes:** Crie uma subconta separada para cada cliente desde o início. Misturar dados de clientes diferentes na mesma subconta cria problemas de privacidade e dificulta a gestão.
+
+**Para times de vendas com diferentes territórios:** Use as permissões por usuário para restringir o acesso de cada vendedor apenas aos seus próprios leads. Isso evita que um vendedor edite acidentalmente dados de contatos de outro colega.
+
+**Para empresas com múltiplos CNPJ:** Configure cada CNPJ como uma subconta separada, mas conecte todas ao mesmo painel de agência para visualização consolidada.
+
+## Erros comuns e como evitar
+
+**Usar o e-mail pessoal como admin principal:** O e-mail do administrador da conta é o ponto de recuperação em caso de perda de acesso. Use sempre um e-mail corporativo que seja monitorado pela empresa, não um e-mail pessoal de um funcionário.
+
+**Não definir as permissões antes de adicionar usuários:** Adicione os usuários somente depois de definir os papéis de cada um. Mudar permissões depois que alguém já está usando a plataforma pode afetar automações e relatórios configurados por esse usuário.
+
+**Esquecer de atualizar o logo:** O logo da subconta aparece em todas as comunicações enviadas pela plataforma — e-mails, páginas de agendamento e formulários. Use sempre a versão de alta resolução (mínimo 200x200px, fundo transparente).
+
+## Perguntas Frequentes
+
+### Posso ter múltiplas subcontas no Ordus System?
+Sim. O Ordus System é uma plataforma multi-conta. Se você é uma agência ou tem múltiplas empresas, cada uma pode ter sua própria subconta com dados completamente separados. A gestão centralizada é feita pelo painel de Visão de Agência, onde você alterna entre subcontas com um clique.
+
+### Como adicionar membros da equipe com permissões específicas?
+Vá em Configurações → Equipe → Adicionar Usuário. Defina o e-mail, nome e nível de acesso. O Ordus System oferece perfis de permissão predefinidos (Admin, Vendedor, Visualizador) e também permite configurações personalizadas por módulo — por exemplo, um usuário que só pode ver relatórios mas não editar contatos.
+
+### Como conectar meu domínio ao Ordus System?
+Em Configurações → Domínios, adicione seu domínio e configure os registros DNS conforme as instruções da plataforma. O processo leva até 48 horas para propagação completa. Depois disso, seus funis e sites aparecerão no seu domínio próprio, sem nenhuma menção à plataforma.
+
+### O que acontece se eu esquecer de configurar o fuso horário?
+As automações e agendamentos do Ordus System usam o fuso horário da subconta para calcular quando enviar mensagens e notificações. Se estiver incorreto, seus clientes recebem mensagens fora do horário esperado — um follow-up programado para as 9h pode chegar às 6h da manhã. Configure sempre antes de criar qualquer automação.
+
+### Como transferir configurações entre subcontas?
+O Ordus System permite exportar e importar snapshots de configuração entre subcontas. Isso inclui automações, funis, templates de e-mail, pipelines e campos personalizados. Use Configurações → Snapshots para criar um backup completo. É a forma mais rápida de replicar uma configuração que funciona bem para uma nova subconta.

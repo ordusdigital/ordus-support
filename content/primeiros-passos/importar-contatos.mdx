@@ -1,0 +1,114 @@
+---
+title: "Como Importar Contatos no Ordus System via CSV"
+description: "Importe sua base de contatos no Ordus System com CSV em minutos. Veja como mapear campos, evitar duplicatas e organizar leads por tags."
+keywords: ["importar contatos Ordus System", "importar CSV CRM", "migrar contatos CRM Brasil", "base de contatos CRM", "importação leads"]
+category: "Primeiros Passos"
+categorySlug: "primeiros-passos"
+ghlReference: "https://help.gohighlevel.com/en/articles/importing-contacts"
+lastUpdated: "2026-04-18"
+priority: 0
+tags: ["contatos", "importação", "CSV", "leads", "migração"]
+screenshotSteps:
+  - step: 1
+    description: "Módulo de Contatos do Ordus System"
+    action: "navigate"
+    url: "/contacts"
+    highlight: ".contacts-header, .import-button"
+    annotation: "1. Acesse Contatos"
+  - step: 2
+    description: "Botão de importação de contatos"
+    action: "click"
+    selector: "[data-testid='import-contacts'], .import-csv-button"
+    highlight: ".import-modal, .upload-area"
+    annotation: "2. Clique em Importar"
+  - step: 3
+    description: "Upload do arquivo CSV"
+    action: "navigate"
+    url: "/contacts/import"
+    highlight: ".file-upload-zone, [type='file']"
+    annotation: "3. Faça upload do CSV"
+  - step: 4
+    description: "Mapeamento de campos do CSV"
+    action: "navigate"
+    url: "/contacts/import/map"
+    highlight: ".field-mapping-table, .column-mapper"
+    annotation: "4. Mapeie os campos"
+  - step: 5
+    description: "Confirmação da importação"
+    action: "navigate"
+    url: "/contacts/import/confirm"
+    highlight: ".import-summary, .confirm-button"
+    annotation: "5. Confirme a importação"
+faqs:
+  - q: "Qual é o limite de contatos por importação no Ordus System?"
+    a: "O Ordus System suporta arquivos CSV de até 50.000 linhas por importação. Para bases maiores, divida o arquivo em lotes e importe sequencialmente. Não há limite total de contatos na plataforma — o limite é por arquivo de importação."
+  - q: "Como evitar importar contatos duplicados?"
+    a: "O Ordus System verifica automaticamente duplicatas durante a importação usando e-mail e telefone como chaves de identificação. Você pode configurar o comportamento para: ignorar o contato duplicado, atualizar os dados do contato existente, ou criar um novo registro mesmo com dados iguais."
+  - q: "Quais campos são obrigatórios no CSV de importação?"
+    a: "O único campo obrigatório é o nome (ou pelo menos nome OU sobrenome). E-mail e telefone são altamente recomendados para que as automações funcionem corretamente. Sem e-mail ou telefone, o contato ficará sem canal de comunicação disponível."
+  - q: "Posso importar tags e campos personalizados via CSV?"
+    a: "Sim. Tags podem ser incluídas no CSV em uma coluna separada (múltiplas tags separadas por vírgula na mesma coluna). Campos personalizados que você criou no Ordus System aparecem no mapeamento de importação e podem ser preenchidos com dados do CSV."
+  - q: "O que acontece com os contatos que já existem na base?"
+    a: "O comportamento depende da configuração escolhida durante a importação. Se você escolher 'Atualizar existentes', os dados do CSV sobrescrevem os dados atuais nos campos mapeados. Os campos não mapeados permanecem intactos. Se escolher 'Ignorar duplicatas', apenas contatos novos são criados."
+---
+
+Importar sua base de contatos para o Ordus System leva menos de 10 minutos se seu arquivo CSV estiver bem formatado. O processo é guiado passo a passo pela plataforma, com mapeamento visual de campos e verificação automática de duplicatas.
+
+## O que é e para que serve
+
+A importação de contatos é o ponto de partida para qualquer operação de CRM. Ela permite trazer toda a sua base atual — seja de uma planilha Excel, de outro CRM ou de um sistema legado — para o Ordus System, onde você pode segmentar, automatizar e gerenciar o relacionamento de forma centralizada.
+
+## Passo a passo
+
+1. **Acesse o módulo de Contatos**
+   No menu lateral, clique em "Contatos". Você verá sua lista de contatos atual (ou vazia, se for a primeira importação).
+   ![Passo 1: Módulo de Contatos no Ordus System](./screenshots/step-01.png)
+
+2. **Inicie a importação**
+   Clique no botão "Importar" no canto superior direito da tela. Uma janela se abrirá com as opções de importação disponíveis. Selecione "Importar via CSV".
+   ![Passo 2: Botão de importação de contatos](./screenshots/step-02.png)
+
+3. **Faça upload do arquivo CSV**
+   Arraste e solte seu arquivo CSV na área indicada, ou clique para selecionar o arquivo. O arquivo deve ter até 50MB. O Ordus System lê automaticamente os cabeçalhos das colunas.
+   ![Passo 3: Upload do arquivo CSV](./screenshots/step-03.png)
+
+4. **Mapeie os campos**
+   Para cada coluna do seu CSV, indique qual campo do Ordus System ela corresponde. Por exemplo: coluna "Nome" → campo "Primeiro Nome"; coluna "Celular" → campo "Telefone". Campos não mapeados são ignorados.
+   ![Passo 4: Mapeamento de campos do CSV](./screenshots/step-04.png)
+
+5. **Confirme e importe**
+   Revise o resumo: total de linhas, campos mapeados e configuração de duplicatas. Clique em "Iniciar Importação". O progresso aparece em tempo real. Para bases grandes, a importação continua em segundo plano.
+   ![Passo 5: Confirmação da importação](./screenshots/step-05.png)
+
+## Dicas práticas
+
+**Padronize os telefones antes de importar:** Inclua sempre o DDD e o nono dígito nos números celulares. O formato recomendado é `11987654321` (sem espaços, parênteses ou traços). Números mal formatados não funcionam nas automações de SMS e WhatsApp.
+
+**Use tags para segmentar na importação:** Se sua base tem segmentos diferentes (ex: clientes ativos, prospects, clientes inativos), adicione uma coluna "Tags" no CSV com os valores correspondentes. Isso facilita criar automações específicas para cada grupo logo após a importação.
+
+**Teste com uma amostra primeiro:** Para bases grandes, importe primeiro 50-100 linhas para verificar se o mapeamento está correto. Só então importe o arquivo completo.
+
+## Erros comuns e como evitar
+
+**CSV com formatação incorreta:** Arquivos salvos com separador de ponto-e-vírgula (padrão do Excel Brasil) podem não ser reconhecidos. Salve o arquivo no Excel em "CSV (separado por vírgulas)" ou abra no Google Sheets e baixe como CSV.
+
+**Telefones com código do país:** Números como `+5511987654321` podem não ser reconhecidos corretamente. Remova o `+55` antes de importar — o Ordus System adiciona automaticamente o código do Brasil.
+
+**Campos de data no formato errado:** Datas devem estar no formato `YYYY-MM-DD` (ex: `2026-04-18`). Datas no formato brasileiro `18/04/2026` precisam ser convertidas antes da importação.
+
+## Perguntas Frequentes
+
+### Qual é o limite de contatos por importação no Ordus System?
+O Ordus System suporta arquivos CSV de até 50.000 linhas por importação. Para bases maiores, divida o arquivo em lotes e importe sequencialmente. O tempo de importação varia com o tamanho da base — arquivos com 10.000 linhas levam em média 2-3 minutos.
+
+### Como evitar importar contatos duplicados?
+O Ordus System verifica automaticamente duplicatas durante a importação usando e-mail e telefone como chaves de identificação. Você pode configurar o comportamento para: ignorar o contato duplicado (mantém o registro existente intacto), atualizar os dados do contato existente (os campos mapeados do CSV sobrescrevem os dados atuais), ou criar um novo registro mesmo com dados iguais.
+
+### Quais campos são obrigatórios no CSV de importação?
+O único campo obrigatório é o nome — pelo menos o primeiro nome ou o sobrenome. E-mail e telefone são altamente recomendados para que as automações funcionem corretamente. Um contato sem e-mail nem telefone ficará sem nenhum canal de comunicação disponível na plataforma.
+
+### Posso importar tags e campos personalizados via CSV?
+Sim. Tags podem ser incluídas no CSV em uma coluna separada — para múltiplas tags, separe por vírgula na mesma célula (ex: `cliente-ativo,interesse-produto-a`). Campos personalizados que você criou no Ordus System aparecem no mapeamento de importação e podem ser preenchidos com dados do CSV.
+
+### O que acontece com os contatos que já existem na base?
+O comportamento depende da configuração escolhida durante a importação. Se você escolher "Atualizar existentes", os dados do CSV sobrescrevem os dados atuais nos campos mapeados — os campos não mapeados permanecem intactos. Se escolher "Ignorar duplicatas", apenas contatos novos são criados e os existentes não são modificados.

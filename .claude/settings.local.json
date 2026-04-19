@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "Bash(gh api *)",
+      "mcp__9bc0f1e2-1e5a-4dda-9e91-713962d25098__accounts_list",
+      "mcp__1f79b780-bfb5-4045-9c99-c76d4c38c08b__list_recent_files",
+      "mcp__f4359cfc-c4e3-475a-ad01-fd490b413715__current_location",
+      "Bash(curl -s -H 'Authorization: Bearer __TRACKED_VAR__' 'https://api.github.com/orgs/ordusdigital/repos?per_page=50&type=all')",
+      "Bash(python3 -c \"import sys,json; repos=json.load\\(sys.stdin\\); [print\\(f\\\\\"{r['name']} | {r['visibility']} | {r['pushed_at'][:10] if r['pushed_at'] else 'nunca'}\\\\\"\\) for r in repos]\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://flow.launchpro.digital/api/v1/workflows\" -H \"X-N8N-API-KEY: dummy\")",
+      "Bash(curl -s \"https://flow.launchpro.digital\" -o /dev/null -w \"n8n status: %{http_code}\")",
+      "Bash(curl -s -H 'Authorization: Bearer __TRACKED_VAR__' 'https://api.github.com/orgs/ordusdigital/repos?per_page=50')",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s --max-time 10 \"https://flow.launchpro.digital\" -o /dev/null -w \"HTTP: %{http_code} | tempo: %{time_total}s\\\\n\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f\\\\\"User: {d['login']} | Orgs: verifique manualmente\\\\\"\\)\")",
+      "mcp__9bc0f1e2-1e5a-4dda-9e91-713962d25098__set_active_account",
+      "mcp__9bc0f1e2-1e5a-4dda-9e91-713962d25098__workers_list",
+      "Read(//Users/leandrogeseth/.config/gh/**)",
+      "Bash(security find-generic-password *)",
+      "Bash(security find-internet-password *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); env=d.get\\('env',{}\\); [print\\(f'{k}={v[:15]}...'\\) for k,v in env.items\\(\\) if 'github' in k.lower\\(\\) or 'gh_' in k.lower\\(\\)]\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); env=d.get\\('env',{}\\); print\\('Env vars no settings.json:'\\); [print\\(f' {k}={str\\(v\\)[:20]}...'\\) for k,v in env.items\\(\\)]\")",
+      "Bash(xargs ls *)",
+      "Bash(curl -s -H 'Authorization: Bearer __TRACKED_VAR__' https://api.github.com/user)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f\\\\\"Login: {d.get\\('login','erro'\\)} | Nome: {d.get\\('name','?'\\)} | Org acesso: verifique\\\\\"\\)\")",
+      "Bash(cat)",
+      "Bash(bash /tmp/fix-gh-auth.sh)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f\\\\\"Login: {d.get\\('login','?'\\)} | Status: OK\\\\\"\\)\")",
+      "Bash(ssh -T git@github.com)"
+    ]
+  }
+}

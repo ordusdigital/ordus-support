@@ -1,0 +1,46 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build and Deploy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://suporte.ordussystem.com.br
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          accountId: 50cf2413cc4834b290d475896d5a4465
+          projectName: ordus-support
+          directory: .next
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify QA webhook
+        if: success()
+        run: |
+          curl -X POST "${{ secrets.N8N_WEBHOOK_QA }}" \
+            -H "Content-Type: application/json" \
+            -d '{"event":"deploy_complete","repo":"ordusdigital/ordus-support","branch":"main"}'
+        continue-on-error: true

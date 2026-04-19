@@ -1,0 +1,53 @@
+name: QA Check on MDX Push
+
+on:
+  push:
+    paths:
+      - 'content/**/*.mdx'
+  workflow_dispatch:
+    inputs:
+      article_path:
+        description: 'Caminho do artigo MDX'
+        required: false
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    name: QA Automático
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run QA checker
+        id: qa
+        run: |
+          npm run qa-checker 2>&1 | tee qa-output.txt
+          echo "exit_code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Trigger screenshot worker on success
+        if: steps.qa.outputs.exit_code == '0'
+        run: |
+          curl -X POST "${{ secrets.N8N_WEBHOOK_SCREENSHOTS }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"event\":\"qa_passed\",\"commit\":\"${{ github.sha }}\"}"
+        continue-on-error: true
+
+      - name: Notify failure
+        if: steps.qa.outputs.exit_code != '0'
+        run: |
+          QA_OUTPUT=$(cat qa-output.txt | head -50)
+          curl -X POST "${{ secrets.SLACK_WEBHOOK_KAUAN }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"text\":\"❌ QA reprovado no Ordus Support\n\`\`\`${QA_OUTPUT}\`\`\`\"}"
+        continue-on-error: true
